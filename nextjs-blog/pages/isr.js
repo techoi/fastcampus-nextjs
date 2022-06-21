@@ -1,15 +1,15 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   console.log('server')
 
   return {
-    props: { time: new Date().toISOString() }
+    props: { time: new Date().toISOString() },
+    revalidate: 1,
   }
 }
 
-export default function Home({ time }) {
+export default function ISR({ time }) {
   return (
     <div className="container">
       <Head>
@@ -21,9 +21,6 @@ export default function Home({ time }) {
         <h1 className="title">
           {time}
         </h1>
-        <h1><Link href="/csr"><a>CSR 로</a></Link></h1>
-        <h1><Link href="/ssg"><a>SSG 로</a></Link></h1>
-        <h1><Link href="/isr"><a>ISR 로</a></Link></h1>
       </main>
 
       <footer>

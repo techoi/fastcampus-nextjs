@@ -1,15 +1,14 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-export async function getServerSideProps() {
-  console.log('server')
+export default function CSR() {
+  const [time, setTime] = useState()
 
-  return {
-    props: { time: new Date().toISOString() }
-  }
-}
+  useEffect(()=>{
+    console.log('client')
+    setTime(new Date().toISOString())
+  },[])
 
-export default function Home({ time }) {
   return (
     <div className="container">
       <Head>
@@ -21,9 +20,6 @@ export default function Home({ time }) {
         <h1 className="title">
           {time}
         </h1>
-        <h1><Link href="/csr"><a>CSR 로</a></Link></h1>
-        <h1><Link href="/ssg"><a>SSG 로</a></Link></h1>
-        <h1><Link href="/isr"><a>ISR 로</a></Link></h1>
       </main>
 
       <footer>
