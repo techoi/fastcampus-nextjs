@@ -1,31 +1,31 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import Layout, { siteTitle } from '../components/layout'
-// import { getSortedPostsData } from '../lib/posts'
+// import { useEffect, useState } from 'react'
+import Layout, { siteTitle } from '../components/Layout'
+import { getSortedPostsData } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Date from '../components/Date'
 
-// export async function getServerSideProps() {
-//   const allPostsData = getSortedPostsData()
-
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   }
-// }
-
-export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/posts')
-  const json = await response.json()
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
 
   return {
     props: {
-      allPostsData: json.allPostsData,
+      allPostsData,
     },
   }
 }
+
+// export async function getServerSideProps() {
+//   const response = await fetch('http://localhost:3000/api/posts')
+//   const json = await response.json()
+
+//   return {
+//     props: {
+//       allPostsData: json.allPostsData,
+//     },
+//   }
+// }
 
 export default function Home({ allPostsData }) {
   // const [allPostsData, setAllPostsData] = useState([])
