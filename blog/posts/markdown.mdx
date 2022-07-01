@@ -1,0 +1,43 @@
+---
+title: 'MDX with CodeBlock by react-syntax-highlighter'
+date: '2022-07-01'
+---
+
+<div>
+  MDX is <strong>MD</strong> with <strong>JSX</strong>. <br />
+  Let's learn about MDX.
+</div>
+
+<br />
+
+### This is a H3
+
+`###` help you to use H3
+
+<br />
+
+<div>
+  Let's try button here.
+  <Button>Just click it</Button>
+</div>
+
+<br />
+
+### Let's try CodeBlock here.
+
+```
+  // this is a code block in md syntax
+  const sayHi = () => {
+    return console.log('hi')
+  }
+```
+
+<br />
+
+<CodeBlock>
+  {`
+    const sayHi = () => {
+      return console.log('hi')
+    }
+  `}
+</CodeBlock>
