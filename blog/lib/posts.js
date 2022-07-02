@@ -5,6 +5,7 @@ import { remark } from 'remark'
 import html from 'remark-html'
 import { serialize } from 'next-mdx-remote/serialize'
 
+// eslint-disable-next-line no-undef
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
@@ -58,7 +59,7 @@ export function getAllPostIds() {
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$|\.md$/, ''),
+        id: fileName.replace(/\.md$|\.mdx$/, ''),
       },
     }
   })

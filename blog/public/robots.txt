@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fastcampus-blug.vercel.app
+
+# Sitemaps
+Sitemap: https://fastcampus-blug.vercel.app/sitemap.xml
