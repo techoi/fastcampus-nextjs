@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import '../styles/global.css'
 import { formatDistanceToNow } from 'date-fns'
+import ErrorBoundary from '@components/ErrorBoundary'
 
 export function reportWebVitals(metric) {
   console.log(metric)
@@ -21,7 +22,9 @@ export default function App({ Component, pageProps }) {
           includeSeconds: true,
         })}
       </div>
-      <Component {...pageProps} pathname={router.pathname} />
+      <ErrorBoundary>
+        <Component {...pageProps} pathname={router.pathname} />
+      </ErrorBoundary>
     </Layout>
   )
 }
