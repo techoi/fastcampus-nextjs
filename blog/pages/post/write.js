@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -9,6 +9,13 @@ import Head from 'next/head'
 
 export default function Write() {
   const router = useRouter()
+
+  useEffect(() => {
+    if (router.isReady) {
+      console.log(JSON.stringify(router))
+    }
+    router.prefetch('/posts/ssg-ssr')
+  }, [router])
 
   useEffect(() => {
     console.log(router.query)
@@ -77,16 +84,73 @@ export default function Write() {
           ref={contentRef}
         />
         <br />
-        <input className="rounded bg-pink-500 px-2" type="submit" value="Create" />
+        <input
+          className="rounded bg-pink-500 px-2"
+          type="submit"
+          value="Create"
+        />
       </form>
       {showLink && (
         <Link href={`/posts/${idRef.current.value}`}>
           <a>Created Post</a>
         </Link>
       )}
+      <br />
+      <br />
+      <button
+        onClick={() =>
+          // router.push('/posts/[id]', '/posts/ssg-ssr', { scroll: false })
+          router.push({ pathname: '/posts/[id]', query: { id: 'ssg-ssr' } })
+        }
+        className="rounded bg-pink-200 px-2"
+      >
+        router.push
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => router.replace('/posts/ssg-ssr')}
+        className="rounded bg-pink-200 px-2"
+      >
+        router.replace
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => router.back()}
+        className="rounded bg-pink-200 px-2"
+      >
+        router.back
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => router.reload()}
+        className="rounded bg-pink-200 px-2"
+      >
+        router.reload
+      </button>
+      <br />
+      <br />
+      <Link href="/posts/ssg-ssr" passHref>
+        <LinkButton />
+      </Link>
+      <br />
+      <br />
+      <Link href="/posts/ssg-ssr" replace scroll={false}>
+        <a>가즈아</a>
+      </Link>
     </>
   )
 }
+
+const LinkButton = forwardRef(function Button({ href }, ref) {
+  return (
+    <a href={href} ref={ref} replace scroll={false}>
+      {href} 로
+    </a>
+  )
+})
 
 // Write.getInitialProps = async () => {
 //   return {}
