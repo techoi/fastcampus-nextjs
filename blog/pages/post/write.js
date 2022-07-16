@@ -61,6 +61,7 @@ export default function Write() {
     <>
       <Head>
         <title>Write a post</title>
+        <meta property="og:title" content="My page title" key="title" />
       </Head>
       <h1>Write a post</h1>
       <form onSubmit={handleSumbit}>
@@ -146,7 +147,7 @@ export default function Write() {
 
 const LinkButton = forwardRef(function Button({ href }, ref) {
   return (
-    <a href={href} ref={ref} replace scroll={false}>
+    <a href={href} ref={ref}>
       {href} 로
     </a>
   )
